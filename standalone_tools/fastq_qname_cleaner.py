@@ -1,10 +1,17 @@
-#HiCpro does not support paired end reads with qnames with a .1 and a .2 at the end based on the read
-#the easiest way to solve this problem is to remove the .1 and .2
-#this script takes the file in input and then saves the  cleaned fastq.gz file
+## Author: Chenfu Shi
+## Last update date: 1/08/2018
+## Contact: chenfu.shi@postgrad.manchster.ac.uk
+## This software is distributed without any guarantee on it's functionality
+
+# HiCpro does not support paired end reads with qnames with a .1 and a .2 at the end based on the read
+# the easiest way to solve this problem is to remove the .1 and .2
+# this script takes the files from NCBI SRA format in input and then saves the  cleaned fastq.gz file
+
 
 import os
 import argparse
 import gzip
+import io
 
 parser = argparse.ArgumentParser(description='remove .1 or .2 from qnames in fastq.gz file.')
 
@@ -15,15 +22,9 @@ parser.add_argument("-o",'--output', dest='outputfile', action='store', required
 
 args = parser.parse_args()
 
-if os.path.exists('args.inputfile') == False:
-    raise Exception('Couldn\'t find input file')
-if os.path.exists('args.outputfile') == True:
-    raise Exception('Output file is present, will NOT attempt to overwrite')
-
-with gzip.open(args.outputfile, "wb") as outputfile, gzip.open(args.inputfile , "rb") as inputfile:
+with gzip.open(args.outputfile, "wt", compresslevel=5) as outputfile, gzip.open(args.inputfile , "rt") as inputfile:
     for read in inputfile:
-        if read[0] == "+" or read[0] == "@":
-            print(read)
+        if read[0:2] == "+S" or read[0:2] == "@S":
             a=read.split(" ")
             a[0] = a[0][:-2]
             read = " ".join(a)
