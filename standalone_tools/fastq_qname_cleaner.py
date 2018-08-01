@@ -8,10 +8,8 @@
 # this script takes the files from NCBI SRA format in input and then saves the  cleaned fastq.gz file
 
 
-import os
 import argparse
 import gzip
-import io
 
 parser = argparse.ArgumentParser(description='remove .1 or .2 from qnames in fastq.gz file.')
 
