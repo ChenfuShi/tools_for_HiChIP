@@ -9,9 +9,14 @@ import argparse
 parser = argparse.ArgumentParser(description='remove .1 or .2 from fastq.gz file.')
 
 parser.add_argument("-i",'--input', dest='inputfile', action='store', required=True,
-                    help='input file name')
+                    help='input file name (gzipped fastq)')
 parser.add_argument("-o",'--output', dest='outputfile', action='store', required=True,
-                    help='ouput file name')
+                    help='ouput file name (gzipped fastq)')
 
 args = parser.parse_args()
 print(args.inputfile)
+
+if os.path.isfile('args.inputfile') == False:
+    raise Exception('Couldn\'t find input file')
+if os.path.isfile('args.outputfile') == True:
+    raise Exception('Output file is present, will NOT attempt to overwrite')
