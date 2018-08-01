@@ -3,7 +3,7 @@
 ## Contact: chenfu.shi@postgrad.manchster.ac.uk
 ## This software is distributed without any guarantee on it's functionality
 
-# HiCpro does not support paired end reads with qnames with a .1 and a .2 at the end based on the read
+# current HiCpro does not support paired end reads with qnames with a .1 and a .2 at the end based on the read
 # the easiest way to solve this problem is to remove the .1 and .2
 # this script takes the files from NCBI SRA format in input and then saves the  cleaned fastq.gz file
 
