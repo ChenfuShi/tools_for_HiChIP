@@ -14,18 +14,17 @@ parser.add_argument("-o",'--output', dest='outputfile', action='store', required
                     help='ouput file name (gzipped fastq)')
 
 args = parser.parse_args()
-print(args.inputfile)
 
-if os.path.isfile('args.inputfile') == False:
+if os.path.exists('args.inputfile') == False:
     raise Exception('Couldn\'t find input file')
-if os.path.isfile('args.outputfile') == True:
+if os.path.exists('args.outputfile') == True:
     raise Exception('Output file is present, will NOT attempt to overwrite')
 
-with gzip.open(args.inputfile , "rb") as inputfile:
-    with gzip.open(args.outputfile, "wb") as outputfile:
-        for read in inputfile:
-            if read[0] == "+":
-                a=read.split(" ")
-                a[0] = a[0][:-2]
-                read = " ".join(a)
-            outputfile.write(read)
+with gzip.open(args.outputfile, "wb") as outputfile, gzip.open(args.inputfile , "rb") as inputfile:
+    for read in inputfile:
+        if read[0] == "+" or read[0] == "@":
+            print(read)
+            a=read.split(" ")
+            a[0] = a[0][:-2]
+            read = " ".join(a)
+        outputfile.write(read)
