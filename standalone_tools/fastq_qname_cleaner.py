@@ -4,9 +4,9 @@
 
 import os
 import argparse
+import gzip
 
-
-parser = argparse.ArgumentParser(description='remove .1 or .2 from fastq.gz file.')
+parser = argparse.ArgumentParser(description='remove .1 or .2 from qnames in fastq.gz file.')
 
 parser.add_argument("-i",'--input', dest='inputfile', action='store', required=True,
                     help='input file name (gzipped fastq)')
@@ -20,3 +20,12 @@ if os.path.isfile('args.inputfile') == False:
     raise Exception('Couldn\'t find input file')
 if os.path.isfile('args.outputfile') == True:
     raise Exception('Output file is present, will NOT attempt to overwrite')
+
+with gzip.open(args.inputfile , "rb") as inputfile:
+    with gzip.open(args.outputfile, "wb") as outputfile:
+        for read in inputfile:
+            if read[0] == "+":
+                a=read.split(" ")
+                a[0] = a[0][:-2]
+                read = " ".join(a)
+            outputfile.write(read)
