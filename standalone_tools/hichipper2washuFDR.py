@@ -16,6 +16,7 @@ parser.add_argument("-i",'--input', dest='inputfile', action='store', required=T
                     help='input file name (interactions.all.mango file)')
 parser.add_argument("-o",'--output', dest='outputfile', action='store', required=False,
                     help='ouput file name')
+parser.add_argument('-f', action='store_true', dest='filter', help='filter for FDR < 0.10')
 
 args = parser.parse_args()
 
@@ -27,6 +28,7 @@ else:
 with open(outputname, "w") as outputfile, open(args.inputfile , "r") as inputfile:
     for line in inputfile:
         data = line.split("\t")
-
+        if filter and float(data[7].strip()) > 0.10:
+            continue
         outputfile.write("{},{},{}\t{},{},{}\t{}\n".format(data[0],data[1],data[2],data[3],data[4],data[5],str(1-float(data[7].strip()))))
 
