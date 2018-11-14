@@ -22,7 +22,7 @@ args = parser.parse_args()
 if args.outputfile:
     outputname=args.ouputfile
 else:
-    outputname=args.inputfile + "washu.gz"
+    outputname=args.inputfile + ".washu.gz"
 
 with gzip.open(outputname, "wt", compresslevel=5) as outputfile, open(args.inputfile , "r") as inputfile:
     for line in inputfile:
