@@ -8,14 +8,14 @@
 
 
 import argparse
-import gzip
 
-parser = argparse.ArgumentParser(description='convert hichipper mango output to washu gz compressed pairwise interaction files with FDR scores')
+
+parser = argparse.ArgumentParser(description='convert hichipper mango output to washu pairwise interaction files with FDR scores')
 
 parser.add_argument("-i",'--input', dest='inputfile', action='store', required=True,
                     help='input file name (interactions.all.mango file)')
 parser.add_argument("-o",'--output', dest='outputfile', action='store', required=False,
-                    help='ouput file name (gz compressed file)')
+                    help='ouput file name')
 
 args = parser.parse_args()
 
@@ -24,7 +24,7 @@ if args.outputfile:
 else:
     outputname=args.inputfile + ".washu.gz"
 
-with gzip.open(outputname, "wt", compresslevel=5) as outputfile, open(args.inputfile , "r") as inputfile:
+with open(outputname, "w") as outputfile, open(args.inputfile , "r") as inputfile:
     for line in inputfile:
         data = line.split("\t")
 
