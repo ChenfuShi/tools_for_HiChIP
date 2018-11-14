@@ -22,7 +22,7 @@ args = parser.parse_args()
 if args.outputfile:
     outputname=args.ouputfile
 else:
-    outputname=args.inputfile + ".washu.gz"
+    outputname=args.inputfile + ".washu.txt"
 
 with open(outputname, "w") as outputfile, open(args.inputfile , "r") as inputfile:
     for line in inputfile:
