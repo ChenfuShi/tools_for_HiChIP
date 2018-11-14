@@ -28,5 +28,5 @@ with open(outputname, "w") as outputfile, open(args.inputfile , "r") as inputfil
     for line in inputfile:
         data = line.split("\t")
 
-        outputfile.write("{},{},{}\t{},{},{}\t{}".format(data[0],data[1],data[2],data[3],data[4],data[5],str(1-float(data[7].strip()))))
+        outputfile.write("{},{},{}\t{},{},{}\t{}\n".format(data[0],data[1],data[2],data[3],data[4],data[5],str(1-float(data[7].strip()))))
 
