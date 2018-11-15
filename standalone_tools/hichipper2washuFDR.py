@@ -6,7 +6,7 @@
 # hichipper output for washu doesn't use the FDR values. 
 # I'm taking the all.mango output files and making fresh washu files
 
-
+#### ADD OPTION TO FILTER BY NUMBER OF READS
 import argparse
 
 
