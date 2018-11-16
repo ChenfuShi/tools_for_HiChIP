@@ -6,7 +6,7 @@
 # hichipper output for washu doesn't use the FDR values. 
 # I'm taking the all.mango output files and making fresh washu files
 
-#### ADD OPTION TO FILTER BY NUMBER OF READS
+
 import argparse
 
 
@@ -16,7 +16,10 @@ parser.add_argument("-i",'--input', dest='inputfile', action='store', required=T
                     help='input file name (interactions.all.mango file)')
 parser.add_argument("-o",'--output', dest='outputfile', action='store', required=False,
                     help='ouput file name')
-parser.add_argument('-f', action='store_true', dest='filter', help='filter for FDR < 0.10')
+parser.add_argument('-f', '--filter' ,action='store_true', dest='filter', help='filter for FDR < 0.10')
+
+parser.add_argument("-t",'--threshold', dest='threshold', action='store', type=int, default=1, required=False,
+                    help='minimum read for interaction threshold')
 
 args = parser.parse_args()
 
@@ -30,5 +33,6 @@ with open(outputname, "w") as outputfile, open(args.inputfile , "r") as inputfil
         data = line.split("\t")
         if filter and float(data[7].strip()) > 0.10:
             continue
-        outputfile.write("{},{},{}\t{},{},{}\t{}\n".format(data[0],data[1],data[2],data[3],data[4],data[5],str(1-float(data[7].strip()))))
+        if args.threshold < int(data[6]):
+            outputfile.write("{},{},{}\t{},{},{}\t{}\n".format(data[0],data[1],data[2],data[3],data[4],data[5],str(1-float(data[7].strip()))))
 
