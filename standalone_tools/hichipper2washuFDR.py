@@ -19,7 +19,7 @@ parser.add_argument("-o",'--output', dest='outputfile', action='store', required
 parser.add_argument('-f', '--filter' ,action='store_true', dest='filter', help='filter for FDR < 0.10')
 
 parser.add_argument("-t",'--threshold', dest='threshold', action='store', type=int, default=1, required=False,
-                    help='minimum read for interaction threshold')
+                    help='minimum read for interaction threshold (>)')
 
 args = parser.parse_args()
 
