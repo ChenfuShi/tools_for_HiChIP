@@ -24,7 +24,7 @@ parser.add_argument("-t",'--threshold', dest='threshold', action='store', type=i
 args = parser.parse_args()
 
 if args.outputfile:
-    outputname=args.ouputfile
+    outputname=args.outputfile
 else:
     outputname=args.inputfile + ".washu.txt"
 
