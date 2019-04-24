@@ -48,10 +48,10 @@ with open(outputname, "w") as outputfile, open(args.inputfile , "r") as inputfil
             if Old_washu:
                 outputfile.write("{},{},{}\t{},{},{}\t{}\n".format(data[0],data[1],data[2],data[3],data[4],data[5],str(1-float(data[7].strip()))))
             else:
-                outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(data[0],data[1],data[2],data[3],data[4],data[5],str(1-float(data[7].strip())),str(counter),"."))
-                counter = counter + 1
-                outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(data[3],data[4],data[5],data[0],data[1],data[2],str(1-float(data[7].strip())),str(counter),"."))
-                counter = counter + 1
+                outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(data[0],data[1],data[2],data[3],data[4],data[5],str(1-float(data[7].strip())),str(ID_counter),"."))
+                ID_counter = ID_counter + 1
+                outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(data[3],data[4],data[5],data[0],data[1],data[2],str(1-float(data[7].strip())),str(ID_counter),"."))
+                ID_counter = ID_counter + 1
 
 
 if not Old_washu:
