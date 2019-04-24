@@ -57,4 +57,4 @@ with open(outputname, "w") as outputfile, open(args.inputfile , "r") as inputfil
 if not Old_washu:
     import subprocess
     subprocess.run(["bgzip",outputname])
-    subprocess.run(["tabix","-p","bed",outputname+"gz"])
+    subprocess.run(["tabix","-p","bed",outputname+".gz"])
