@@ -25,7 +25,7 @@
 # you can also filter by number of reads supporting the interaction
 
 import argparse
-
+import os
 
 parser = argparse.ArgumentParser(description='Convert hichipper mango output to washu pairwise interaction files and filters with FDR scores and/or minimum number of reads. Uses bgzip and tabix to compress and index the file')
 
@@ -52,7 +52,11 @@ FDR_thres = args.filter
 Old_washu = args.old
 ID_counter = 1
 
-with open(outputname, "w") as outputfile, open(args.inputfile , "r") as inputfile:
+inputname=args.inputfile
+if not os.path.isfile(inputname):
+    raise Exception("input file couldn't be opened")
+
+with open(outputname, "w") as outputfile, open( inputname, "r") as inputfile:
     for line in inputfile:
         data = line.split("\t")
         if float(data[7].strip()) > FDR_thres:
