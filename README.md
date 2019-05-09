@@ -1,6 +1,6 @@
 # Tools for HiChIP and Capture HiC analysis
 
-This is a toolset developed as part of pipelines in the analysis of HiChIP and Capture HiC data in our lab at The University of Manchester.
+This is a toolset developed for use as part of pipelines in the analysis of HiChIP and Capture HiC data in our lab at The University of Manchester.
 
 
 
@@ -8,7 +8,7 @@ This is a toolset developed as part of pipelines in the analysis of HiChIP and C
 
 Currently all tools are written in plain python 3 for linux, so just download the repository and make sure that the requirements are satisfied and callable from command line.
 
-requirements:
+Requirements:
 
 * bgzip
 * tabix
@@ -76,7 +76,7 @@ optional arguments:
 
 ### Hichipper FDR and readcount filtering tool
 
-This tool can be used to filter the results from hichipper by FDR or readcounts. It takes the interactions.all.mango file and outputs in washu ready format. Can output both the new format and the legacy format. 
+This tool can be used to filter the results from hichipper by FDR or number of reads supporting the interactions. It takes the interactions.all.mango file and outputs in washu ready format. Can output both the new format and the legacy format. 
 ```
 python hichipper2washuFDR.py --help
 usage: hichipper2washuFDR.py [-h] -i INPUTFILE [-o OUTPUTFILE] [-f FILTER]
