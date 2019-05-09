@@ -26,7 +26,7 @@ import argparse
 import subprocess
 import os
 import gzip
-parser = argparse.ArgumentParser(description='Tool to extract a specific region of interest (anchor) from hichipper washu data. Uses bgzip and tabix to compress and index the file')
+parser = argparse.ArgumentParser(description='Tool to extract a specific region of interest (anchor) from hichipper or CHiCAGO washu data. Uses bgzip and tabix to compress and index the file')
 
 
 

@@ -37,10 +37,11 @@ parser.add_argument("-o",'--output', dest='outputfile', action='store', required
 parser.add_argument('-f', '--filter' , dest='filter', action='store', type=float, default=0.10, required=False,
                     help='filter FDR threshold (<) - default = 0.10')
 
-parser.add_argument('-v', '--old_washu' ,action='store_true', dest='old', help='use old washu format instead of longrange')
 
 parser.add_argument("-t",'--threshold', dest='threshold', action='store', type=int, default=1, required=False,
-                    help='minimum read for interaction threshold (>) - default = 1 (no filtering)')
+                    help='minimum read for interaction threshold (>=) - default = 1 (no filtering)')
+
+parser.add_argument('-v', '--old_washu' ,action='store_true', dest='old', help='use old washu format instead of longrange')
 
 args = parser.parse_args()
 
@@ -62,7 +63,7 @@ with open(outputname, "w") as outputfile, open( inputname, "r") as inputfile:
         if float(data[7].strip()) > FDR_thres:
             # do nothing if FDR value is above FDR
             continue
-        if args.threshold < int(data[6]):
+        if args.threshold <= int(data[6]):
             # filter for threshold of read count
             if Old_washu:
                 outputfile.write("{},{},{}\t{},{},{}\t{}\n".format(data[0],data[1],data[2],data[3],data[4],data[5],str(1-float(data[7].strip()))))
