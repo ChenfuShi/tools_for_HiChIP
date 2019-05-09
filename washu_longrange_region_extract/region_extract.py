@@ -69,7 +69,7 @@ if Old_washu:
         for line in input_file:
             coords = line.split()[0:2]
             for val in coords:
-                if val.split(",")[0] == chrom and ((int(val.split(",")[1]) <= region_end and int(val.split(",")[1]) >= region_start) or (int(val.split(",")[2]) <= region_end and int(val.split(",")[2]) >= region_start) ): 
+                if val.split(",")[0] == chrom and ((int(val.split(",")[1]) <= region_end and int(val.split(",")[1]) >= region_start) or (int(val.split(",")[2]) <= region_end and int(val.split(",")[2]) >= region_start) or (int(val.split(",")[2]) >= region_end and int(val.split(",")[1]) <= region_start)): 
                     output_file.write(line)
                     # break just doesn't allow a line to be written twice
                     break
@@ -89,7 +89,7 @@ else:
             location = [(chrA,startA,endA),(chrB,startB,endB)]
 
             for val in location:
-                if val[0] == chrom and ((val[1] <= region_end and val[1] >= region_start) or (val[2] <= region_end and val[2] >= region_start)): 
+                if val[0] == chrom and ((val[1] <= region_end and val[1] >= region_start) or (val[2] <= region_end and val[2] >= region_start) or (val[2] >= region_end and val[1] <= region_start)): 
                     output_file.write(line)
                     # break just doesn't allow a line to be written twice
                     break   
