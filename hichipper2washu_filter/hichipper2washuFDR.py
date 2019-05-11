@@ -23,11 +23,12 @@
 # will use gbzip and tabix to compress and index everything!
 # FDR score is reversed because otherwise very good values would be very low for washu scoring
 # you can also filter by number of reads supporting the interaction
+# FDR score filtering is automatically applied. to disable run with -f 1
 
 import argparse
 import os
 
-parser = argparse.ArgumentParser(description='Convert hichipper mango output to washu pairwise interaction files and filters with FDR scores and/or minimum number of reads. Uses bgzip and tabix to compress and index the file')
+parser = argparse.ArgumentParser(description='Convert hichipper mango output to washu pairwise interaction files and filters with FDR scores and minimum number of reads. Uses bgzip and tabix to compress and index the file')
 
 parser.add_argument("-i",'--input', dest='inputfile', action='store', required=True,
                     help='input file name (interactions.all.mango file)')

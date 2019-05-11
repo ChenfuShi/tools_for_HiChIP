@@ -83,7 +83,7 @@ usage: hichipper2washuFDR.py [-h] -i INPUTFILE [-o OUTPUTFILE] [-f FILTER]
                              [-t THRESHOLD] [-v]
 
 Convert hichipper mango output to washu pairwise interaction files and filters
-with FDR scores and/or minimum number of reads. Uses bgzip and tabix to
+with FDR scores and minimum number of reads. Uses bgzip and tabix to
 compress and index the file
 
 optional arguments:
