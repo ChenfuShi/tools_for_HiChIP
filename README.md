@@ -20,7 +20,7 @@ git clone https://github.com/ChenfuShi/tools_for_HiChIP.git
 
 To update the repository
 ```
-git fetch origin
+git pull origin master
 ```
 
 ## Tools
