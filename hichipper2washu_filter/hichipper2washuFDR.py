@@ -41,7 +41,7 @@ parser.add_argument('-f', '--filter' , dest='filter', action='store', type=float
 
 parser.add_argument("-t",'--threshold', dest='threshold', action='store', type=int, default=1, required=False,
                     help='minimum read for interaction threshold (>=) - default = 1 (no filtering)')
-
+parser.add_argument('-c', '--counts' ,action='store_true', dest='counts', help='store counts instead of FDR value')
 parser.add_argument('-v', '--old_washu' ,action='store_true', dest='old', help='use old washu format instead of longrange')
 
 args = parser.parse_args()
@@ -52,6 +52,7 @@ else:
     outputname=args.inputfile + ".washu.txt"
 FDR_thres = args.filter
 Old_washu = args.old
+counts = args.counts
 ID_counter = 1
 
 inputname=args.inputfile
@@ -66,12 +67,16 @@ with open(outputname, "w") as outputfile, open( inputname, "r") as inputfile:
             continue
         if args.threshold <= int(data[6]):
             # filter for threshold of read count
-            if Old_washu:
-                outputfile.write("{},{},{}\t{},{},{}\t{}\n".format(data[0],data[1],data[2],data[3],data[4],data[5],str(1-float(data[7].strip()))))
+            if counts:
+                score = data[6]
             else:
-                outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(data[0],data[1],data[2],data[3],data[4],data[5],str(1-float(data[7].strip())),str(ID_counter),"."))
+                score = str(1-float(data[7].strip()))
+            if Old_washu:
+                outputfile.write("{},{},{}\t{},{},{}\t{}\n".format(data[0],data[1],data[2],data[3],data[4],data[5],score))
+            else:
+                outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(data[0],data[1],data[2],data[3],data[4],data[5],score,str(ID_counter),"."))
                 ID_counter = ID_counter + 1
-                outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(data[3],data[4],data[5],data[0],data[1],data[2],str(1-float(data[7].strip())),str(ID_counter),"."))
+                outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(data[3],data[4],data[5],data[0],data[1],data[2],score,str(ID_counter),"."))
                 ID_counter = ID_counter + 1
 
 
