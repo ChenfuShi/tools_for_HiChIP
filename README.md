@@ -76,7 +76,7 @@ optional arguments:
 
 ### Hichipper FDR and readcount filtering tool
 
-This tool can be used to filter the results from hichipper by FDR or number of reads supporting the interactions. It takes the interactions.all.mango file and outputs in washu ready format. Can output both the new format and the legacy format. 
+This tool can be used to filter the results from hichipper by FDR or number of reads supporting the interactions. It takes the interactions.all.mango file and outputs in washu ready format. Can output both the new format and the legacy format. If wanted can output the number of reads as the score instead of FDR values.
 ```
 python hichipper2washuFDR.py --help
 usage: hichipper2washuFDR.py [-h] -i INPUTFILE [-o OUTPUTFILE] [-f FILTER]
@@ -97,6 +97,8 @@ optional arguments:
   -t THRESHOLD, --threshold THRESHOLD
                         minimum read for interaction threshold (>=) - default =
                         1 (no filtering)
+  -c COUNTS, --counts COUNTS
+                        store counts instead of FDR value             
   -v, --old_washu       use old washu format instead of longrange
 ```
 
