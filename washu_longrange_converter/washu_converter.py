@@ -53,9 +53,9 @@ with open(outputname, "w") as outputfile, open(args.inputfile , "r") as inputfil
         start = data[0].split(",")
         end = data[1].split(",")
         score = data[2].strip()
-        outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(start[0],start[1],start[2],end[0],end[1],end[2],score,1,"."))
+        outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(start[0],start[1],start[2],end[0],end[1],end[2],score,str(ID_counter),"."))
         ID_counter = ID_counter + 1
-        outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(end[0],end[1],end[2],start[0],start[1],start[2],score,1,"."))
+        outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(end[0],end[1],end[2],start[0],start[1],start[2],score,str(ID_counter),"."))
         ID_counter = ID_counter + 1
         
 
