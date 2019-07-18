@@ -102,7 +102,7 @@ optional arguments:
   -v, --old_washu       use old washu format instead of longrange
 ```
 
-### Converts to and from BEDPE to and from washu longrange
+### Converters to and from BEDPE to and from washu longrange
 These two tools can be used to convert results from longrange to bedpe and revese.
 From bedpe to longrange you can choose which column to copy over and if you want you can do -log10 for p-values etc.
 
@@ -121,7 +121,7 @@ optional arguments:
 ```
 
 ```
-python tools_for_HiChIP/bedpe_longrange/bedpe2longrange.py --help
+python bedpe2longrange.py --help
 usage: bedpe2longrange.py [-h] -i INPUTFILE [-o OUTPUTFILE] [-f FIELD] [-l]
 
 Tool to convert bedpe files to long_range format. Uses bgzip and tabix to
