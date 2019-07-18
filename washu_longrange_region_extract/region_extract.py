@@ -21,6 +21,8 @@
 #This tool extracts regions of interest from hichipper data
 # only interactions starting of ending within those regions will be outputed
 # the anchors just need to touch the region to work(could theoretically just have a 1bp region)
+# with the new format you need two lines for loci. but expect the input file to be already formatted correctly with two lines. 
+# also with new format expects the file to be gzipped
 
 import argparse
 import subprocess
@@ -67,8 +69,9 @@ if Old_washu:
     #old format washu processing
     with open(inputname, "r") as input_file, open(outputname,"w") as output_file:
         for line in input_file:
-            coords = line.split()[0:2]
-            for val in coords:
+            # split the line by the tab. old format is loc1 loc2 score. next line gets a list with the two locs, then split again for coords.
+            location = line.split()[0:2]
+            for val in location:
                 if val.split(",")[0] == chrom and ((int(val.split(",")[1]) <= region_end and int(val.split(",")[1]) >= region_start) or (int(val.split(",")[2]) <= region_end and int(val.split(",")[2]) >= region_start) or (int(val.split(",")[2]) >= region_end and int(val.split(",")[1]) <= region_start)): 
                     output_file.write(line)
                     # break just doesn't allow a line to be written twice
@@ -78,6 +81,7 @@ else:
     #new format washu processing
     with gzip.open(inputname, "rt") as input_file, open(outputname,"w") as output_file:
         for line in input_file:
+            # new format has loc1 and 2 that are different format. next few lines format everything correctly and uses a if similar to the one for old format.
             chrA = line.split()[0]
             startA = int(line.split()[1])
             endA = int(line.split()[2])
@@ -93,7 +97,7 @@ else:
                     output_file.write(line)
                     # break just doesn't allow a line to be written twice
                     break   
-    # processes the file for indexing
+    # processes the file, sort, compress and index the output file
     subprocess.run(["sort","-o",outputname,"-k1,1","-k2,2n",outputname])
     subprocess.run(["bgzip",outputname])
     subprocess.run(["tabix","-p","bed",outputname+".gz"])

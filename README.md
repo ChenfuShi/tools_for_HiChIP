@@ -102,6 +102,44 @@ optional arguments:
   -v, --old_washu       use old washu format instead of longrange
 ```
 
+### Converts to and from BEDPE to and from washu longrange
+These two tools can be used to convert results from longrange to bedpe and revese.
+From bedpe to longrange you can choose which column to copy over and if you want you can do -log10 for p-values etc.
+
+```
+python longrange2bedpe.py --help
+usage: longrange2bedpe.py [-h] -i INPUTFILE [-o OUTPUTFILE]
+
+Tool to convert long_range format to bedpe
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUTFILE, --input INPUTFILE
+                        input file name
+  -o OUTPUTFILE, --output OUTPUTFILE
+                        ouput file name
+```
+
+```
+python tools_for_HiChIP/bedpe_longrange/bedpe2longrange.py --help
+usage: bedpe2longrange.py [-h] -i INPUTFILE [-o OUTPUTFILE] [-f FIELD] [-l]
+
+Tool to convert bedpe files to long_range format. Uses bgzip and tabix to
+compress and index the file
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUTFILE, --input INPUTFILE
+                        input file name
+  -o OUTPUTFILE, --output OUTPUTFILE
+                        ouput file name. Will add .gz automatically
+  -f FIELD, --field FIELD
+                        field to store as score. Default 8th field. For MAPS
+                        use 9 for FDR
+  -l, --log             do -log10 of score
+```
+
+
 ### Other tools
 
 These tools are not maintained but might be useful for someone

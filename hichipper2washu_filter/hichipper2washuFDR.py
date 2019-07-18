@@ -68,8 +68,10 @@ with open(outputname, "w") as outputfile, open( inputname, "r") as inputfile:
         if args.threshold <= int(data[6]):
             # filter for threshold of read count
             if counts:
+                # report counts
                 score = data[6]
             else:
+                # report the reverse of FDR so washu can properly use color intensity
                 score = str(1-float(data[7].strip()))
             if Old_washu:
                 outputfile.write("{},{},{}\t{},{},{}\t{}\n".format(data[0],data[1],data[2],data[3],data[4],data[5],score))
@@ -79,7 +81,7 @@ with open(outputname, "w") as outputfile, open( inputname, "r") as inputfile:
                 outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(data[3],data[4],data[5],data[0],data[1],data[2],score,str(ID_counter),"."))
                 ID_counter = ID_counter + 1
 
-
+# if using the long-range format then automatically sort, compress and index the output file
 if not Old_washu:
     import subprocess
     subprocess.run(["sort","-o",outputname,"-k1,1","-k2,2n",outputname])

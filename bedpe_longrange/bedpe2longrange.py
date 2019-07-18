@@ -18,15 +18,16 @@
 
 #########################################
 
-# converts the old washu interactions format(legacy) to the new one
-# this software requires bgzip and tabix to be callable from environment
-
+# converts bedpe to long range, making sure to print twice each line.
+# allows the user to choose which field to copy over and if you want to do -log10 for eg. p-values or q-values
 
 
 import argparse
 import subprocess
+import math
+import os
 
-parser = argparse.ArgumentParser(description='Tool to convert the legacy washu interactions to the new long_range format. Uses bgzip and tabix to compress and index the file')
+parser = argparse.ArgumentParser(description='Tool to convert bedpe files to long_range format. Uses bgzip and tabix to compress and index the file')
 
 
 
@@ -35,14 +36,22 @@ parser.add_argument("-i",'--input', dest='inputfile', action='store', required=T
                     help='input file name')
 parser.add_argument("-o",'--output', dest='outputfile', action='store', required=False,
                     help='ouput file name. Will add .gz automatically')
+parser.add_argument("-f",'--field', dest='field', action='store', type=int, default=8, required=False,
+                    help='field to store as score. Default 8th field. For MAPS use 9 for FDR')
+parser.add_argument('-l', '--log' ,action='store_true', dest='log', help='do -log10 of score')
 
 
+args = parser.parse_args()
 args = parser.parse_args()
 
 if args.outputfile:
     outputname=args.outputfile
 else:
-    outputname=args.inputfile + ".new_washu.bed"
+    outputname=args.inputfile + ".washu.bed"
+
+inputname=args.inputfile
+if not os.path.isfile(inputname):
+    raise Exception("input file couldn't be opened")
 
 ID_counter = 1
 
@@ -50,12 +59,25 @@ ID_counter = 1
 with open(outputname, "w") as outputfile, open(args.inputfile , "r") as inputfile:
     for line in inputfile:
         data = line.split("\t")
-        start = data[0].split(",")
-        end = data[1].split(",")
-        score = data[2].strip()
-        outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(start[0],start[1],start[2],end[0],end[1],end[2],score,str(ID_counter),"."))
+        chr1 = data[0].strip()
+        if not data[1].strip().isdigit():
+            # check that the line contains data instead of header
+            continue
+        start1 = data[1].strip()
+        end1 = data[2].strip()
+        chr2 = data[3].strip()
+        start2 = data[4].strip()
+        end2 = data[5].strip()
+        score = data[args.field-1].strip()
+        if args.log == True:
+            try:
+                score = str(-math.log10(float(score)))
+            except ValueError:
+                # in case the score is zero
+                score = 384
+        outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(chr1,start1,end1,chr2,start2,end2,score,str(ID_counter),"."))
         ID_counter = ID_counter + 1
-        outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(end[0],end[1],end[2],start[0],start[1],start[2],score,str(ID_counter),"."))
+        outputfile.write("{}\t{}\t{}\t{}:{}-{},{}\t{}\t{}\n".format(chr2,start2,end2,chr1,start1,end1,score,str(ID_counter),"."))
         ID_counter = ID_counter + 1
         
 
