@@ -2,7 +2,18 @@
 
 This is a toolset developed for use as part of pipelines in the analysis of HiChIP and Capture HiC data in our lab at The University of Manchester.
 
-
+#### Table of Contents 
+- [Tools for HiChIP and Capture HiC analysis](#Tools-for-HiChIP-and-Capture-HiC-analysis)
+      - [Table of Contents](#Table-of-Contents)
+  - [Installation](#Installation)
+  - [Tools](#Tools)
+    - [Washu legacy pairwise interaction to longrange converter](#Washu-legacy-pairwise-interaction-to-longrange-converter)
+    - [Viewpoint extract from pairwise interaction and longrange files](#Viewpoint-extract-from-pairwise-interaction-and-longrange-files)
+    - [Hichipper FDR and readcount filtering tool](#Hichipper-FDR-and-readcount-filtering-tool)
+    - [Converters to and from BEDPE to and from washu longrange](#Converters-to-and-from-BEDPE-to-and-from-washu-longrange)
+    - [Other tools](#Other-tools)
+  - [Authors](#Authors)
+  - [License](#License)
 
 ## Installation
 
@@ -160,11 +171,13 @@ Quick script to generate the annotation file for hichipper using the hicpro resf
 
 ## Authors
 
-These tools were developed by Chenfu Shi<sup>1</sup> at the University of Manchester for use in our pipelines in Magnus Rattray<sup>2</sup> and Gisela Orozco<sup>1</sup>'s labs.
-1) Arthritis Research UK Centre for Genetics and Genomics, Division of Musculoskeletal and Dermatological Sciences, School of Biological Sciences, Faculty of Biology, Medicine and Health, The University of Manchester, UK
-2) School of Biological Sciences, Faculty of Biology, Medicine and Health, The University of Manchester, UK
+These tools were developed by Chenfu Shi<sup>1</sup> at the University of Manchester for use in our pipelines in Magnus Rattray<sup>2,3</sup> and Gisela Orozco<sup>1,3</sup>'s labs.
+1) Centre for Genetics and Genomics Versus Arthritis. Division of Musculoskeletal and Dermatolog-ical Sciences, School of Biological Sciences, Faculty of Biology, Medicine and Health, The Universi-ty of Manchester, UK
+2) Division of Informatics, Imaging and Data Sciences, Faculty of Biology, Medicine and Health, University of Manchester, UK.
+3) NIHR Manchester Biomedical Research Centre, Manchester University NHS Foundation Trust, Manchester Academic Health Science Centre, Manchester, UK.
 
-This project was funded by the Wellcome Trust and Arthritis Research UK.
+
+This work was funded by the Wellcome Trust (award references 207491/Z/17/Z and 215207/Z/19/Z), Versus Arthritis (award reference 21754), NIHR Manchester BRC and the Medical Research Council (award reference MR/N00017X/1).
 
 
 ## License
