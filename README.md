@@ -2,9 +2,9 @@
 
 This is a toolset developed for use as part of pipelines in the analysis of HiChIP and Capture HiC data in our lab at The University of Manchester.
 
-#### Table of Contents 
+### Table of Contents 
 - [Tools for HiChIP and Capture HiC analysis](#Tools-for-HiChIP-and-Capture-HiC-analysis)
-      - [Table of Contents](#Table-of-Contents)
+    - [Table of Contents](#Table-of-Contents)
   - [Installation](#Installation)
   - [Tools](#Tools)
     - [Washu legacy pairwise interaction to longrange converter](#Washu-legacy-pairwise-interaction-to-longrange-converter)
