@@ -51,15 +51,15 @@ with gzip.open(inputname, "rt") as input_file, open(outputname,"w") as output_fi
     interactions_set = set()
     for line in input_file:
         # get line properties
-        chrA = line.split()[0]
-        startA = int(line.split()[1])
-        endA = int(line.split()[2])
-        B = line.split()[3].split(":")
-        chrB = B[0]
-        startB = int(B[1].split("-")[0])
-        endB = int(B[1].split("-")[1].split(",")[0])
-        score = B[1].split(",")[1]
-        ID = line.split()[4].strip()
+        chrA = line.split("\t")[0].strip()
+        startA = int(line.split("\t")[1].strip())
+        endA = int(line.split("\t")[2].strip())
+        B = line.split("\t")[3].strip().split(":")
+        chrB = B[0].strip()
+        startB = int(B[1].strip().split("-")[0].strip())
+        endB = int(B[1].strip().split("-")[1].split(",")[0].strip())
+        score = B[1].strip().split(",")[1].strip()
+        ID = line.split("\t")[4].strip()
         # generate the two possible lines, then check if present in set, if not present in either version print out one with ID
         outA = f"{chrA}{startA}{endA}{chrB}{startB}{endB}{score}"
         outB = f"{chrB}{startB}{endB}{chrA}{startA}{endA}{score}"
