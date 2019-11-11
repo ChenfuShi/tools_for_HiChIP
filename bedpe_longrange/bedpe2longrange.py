@@ -70,9 +70,8 @@ with open(outputname, "w") as outputfile, open(args.inputfile , "r") as inputfil
         end2 = data[5].strip()
         score = data[args.field-1].strip()
         # if chr is a number with no chr add chr, compatibility with washu
-        if chr1.isdigit():
+        if chr1[0:3] != "chr":
             chr1 = "chr" + chr1
-        if chr2.isdigit():
             chr2 = "chr" + chr2
         if args.log == True:
             try:
