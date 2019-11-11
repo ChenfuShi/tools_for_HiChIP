@@ -69,6 +69,11 @@ with open(outputname, "w") as outputfile, open(args.inputfile , "r") as inputfil
         start2 = data[4].strip()
         end2 = data[5].strip()
         score = data[args.field-1].strip()
+        # if chr is a number with no chr add chr, compatibility with washu
+        if chr1.isdigit():
+            chr1 = "chr" + chr1
+        if chr2.isdigit():
+            chr2 = "chr" + chr2
         if args.log == True:
             try:
                 score = str(-math.log10(float(score)))
