@@ -3,17 +3,18 @@
 This is a toolset developed for use as part of pipelines in the analysis of HiChIP and Capture HiC data in our lab at The University of Manchester.
 
 ### Table of Contents 
-- [Tools for HiChIP and Capture HiC analysis](#Tools-for-HiChIP-and-Capture-HiC-analysis)
-    - [Table of Contents](#Table-of-Contents)
-  - [Installation](#Installation)
-  - [Tools](#Tools)
-    - [Washu legacy pairwise interaction to longrange converter](#Washu-legacy-pairwise-interaction-to-longrange-converter)
-    - [Viewpoint extract from pairwise interaction and longrange files](#Viewpoint-extract-from-pairwise-interaction-and-longrange-files)
-    - [Hichipper FDR and readcount filtering tool](#Hichipper-FDR-and-readcount-filtering-tool)
-    - [Converters to and from BEDPE to and from washu longrange](#Converters-to-and-from-BEDPE-to-and-from-washu-longrange)
-    - [Other tools](#Other-tools)
-  - [Authors](#Authors)
-  - [License](#License)
+- [Tools for HiChIP and Capture HiC analysis](#tools-for-hichip-and-capture-hic-analysis)
+    - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Tools](#tools)
+    - [Washu legacy pairwise interaction to longrange converter](#washu-legacy-pairwise-interaction-to-longrange-converter)
+    - [Viewpoint extract from pairwise interaction and longrange files](#viewpoint-extract-from-pairwise-interaction-and-longrange-files)
+    - [Hichipper FDR and readcount filtering tool](#hichipper-fdr-and-readcount-filtering-tool)
+    - [Converters to and from BEDPE to and from washu longrange](#converters-to-and-from-bedpe-to-and-from-washu-longrange)
+    - [Liftover for Bedpe files](#liftover-for-bedpe-files)
+    - [Other tools](#other-tools)
+  - [Authors](#authors)
+  - [License](#license)
 
 ## Installation
 
@@ -149,6 +150,33 @@ optional arguments:
                         use 9 for FDR
   -l, --log             do -log10 of score
 ```
+
+### Liftover for Bedpe files
+This tool can be used to liftover bedpe files.
+This is a wrapper for liftOver tool, it requires liftover in the system.
+
+```
+python liftOverBedpe.py --help
+usage: liftOverBedpe.py [-h] -i INFILE -o OUTFILE [-v] [-t] -l LIFTOVER -c
+                        CHAIN
+
+wrapper for liftOver to accomodate bedpe files
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INFILE, --input INFILE
+                        input file name
+  -o OUTFILE, --output OUTFILE
+                        ouput file name
+  -v, --verbose         Verbose
+  -t, --header          If file has a 1-line header
+  -l LIFTOVER, --lift LIFTOVER
+                        path to liftOver
+  -c CHAIN, --chain CHAIN
+                        path to chain file
+
+```
+
 
 
 ### Other tools
