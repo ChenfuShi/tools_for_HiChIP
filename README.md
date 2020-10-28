@@ -178,6 +178,23 @@ optional arguments:
 ```
 
 
+### Single line liftover
+
+Simplified liftover with easy defaults. To use in python or as command line.
+Requires liftOver to be available in system.
+
+```
+wrapper for liftOver for a single line
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i IN_STR, --input IN_STR
+                        input string
+  -l LIFTOVER, --lift LIFTOVER
+                        path to liftOver
+  -c CHAIN, --chain CHAIN
+                        path to chain file, default is hg19 to hg38
+```
 
 ### Other tools
 
