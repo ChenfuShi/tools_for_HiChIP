@@ -47,7 +47,7 @@ def _format_input(input_str):
         input_str = input_str.replace(" ", "\t")
     return input_str
 
-def single_liftover(input_str, LO = "/mnt/jw01-aruk-home01/projects/shared_resources/bin/liftover/liftover", chain = "hg19ToHg38.over.chain.gz", tmp1 = "/mnt/iusers01/jw01/mdefscs4/scratch/liftover_temp/input_file.bed"):
+def single_liftover(input_str, LO = "/mnt/jw01-aruk-home01/projects/shared_resources/bin/liftover/liftover", chain = "hg19ToHg38.over.chain.gz", tmp1 = "/mnt/iusers01/jw01/mdefscs4/scratch/liftover_temp/input_file.bed", verbose = False):
     os.makedirs(SCRATCH, exist_ok = True)
     formated_string = _format_input(input_str)
     with open(tmp1, "w" ) as f:
@@ -60,12 +60,14 @@ def single_liftover(input_str, LO = "/mnt/jw01-aruk-home01/projects/shared_resou
             os.remove(tmp1)
             os.remove(tmp1+".success")
             os.remove(tmp1+".failure")
-            print(successes[0])
+            if verbose:
+                print(successes[0])
             return successes[0]
     else:
         with open(tmp1 + ".failure") as f:
             errors = f.readlines()
-            print(errors)
+            if verbose:
+                print(errors)
             os.remove(tmp1)
             os.remove(tmp1+".success")
             os.remove(tmp1+".failure")
@@ -82,7 +84,8 @@ if __name__ == "__main__":
                     help='path to liftOver')
     parser.add_argument("-c",'--chain', dest='chain', action='store', required=False, default = "hg19ToHg38.over.chain.gz",
                         help='path to chain file, default is hg19 to hg38')
-
+    parser.add_argument("-v",'--verbose', dest='verbose', action='store_true', default=False, required=False,
+						help='Verbose')
     # parse arguments
     args = parser.parse_args()
 
@@ -92,7 +95,9 @@ if __name__ == "__main__":
     IN  = args.in_str
     tmp1 = "input_file.bed"
     tmp1 = os.path.join(SCRATCH, tmp1)
+    verbose	 = args.verbose
+
     # perform liftOver
-    single_liftover(IN,LO,chain,tmp1)
+    single_liftover(IN,LO,chain,tmp1,verbose)
 
 
