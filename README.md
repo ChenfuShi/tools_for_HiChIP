@@ -196,6 +196,8 @@ optional arguments:
                         path to chain file, default is hg19 to hg38
 ```
 
+Update: Added helper function to do liftover inside jupyter notebooks from arbitrary dataframes or pybedtool BED files
+
 ### Other tools
 
 These tools are not maintained but might be useful for someone
