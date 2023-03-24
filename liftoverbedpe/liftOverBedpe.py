@@ -67,7 +67,7 @@ def mergeliftOver(f1,f2,extra_data,outputfile,verbose=False):
 	sideB = pd.read_csv(f2, header = None, sep="\t", index_col = 3)
 	merged = sideA.merge(sideB,left_index=True,right_index=True,validate ="one_to_one")
 	if extra_data is not None:
-		merged = sideA.merge(extra_data,left_index=True,right_index=True,validate ="one_to_one")
+		merged = merged.merge(extra_data,left_index=True,right_index=True,validate ="one_to_one")
 	merged.to_csv(outputfile, sep="\t", header = False, index = False)
 
 
